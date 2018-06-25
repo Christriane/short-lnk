@@ -4,15 +4,13 @@ import { Accounts } from 'meteor/accounts-base';
 
 Accounts.validateNewUser((user) => {
     const email = user.emails[0].address;
-    try {
-      new SimpleSchema({
+    
+    new SimpleSchema({
         email: {
-          type: String,
-          reGex: SimpleSchema.Regex.Email
+            type: String,
+            regEx: SimpleSchema.RegEx.Email
         }
-      }).validate({email});
-    }catch(e){
-      throw new Meteor.Error(400, e.message);
-    }
+    }).validate({ email });
+
     return true;
-  }); 
+}); 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import { Accounts } from 'meteor/accounts-base';
 
 export default class Signup extends React.Component {
@@ -15,13 +16,13 @@ export default class Signup extends React.Component {
 
         let email = this.refs.email.value.trim();
         let password = this.refs.password.value.trim();
-
-        if(password.length < 9){
+        if(password.length < 8){
             return this.setState({error: 'Password must be greater than 8 characters long'});
         }
 
         Accounts.createUser({email, password}, (err) => {
             if(err){
+                console.log();
                 this.setState({error: err.reason});
             }else {
                 this.setState({error: ''});
@@ -31,15 +32,17 @@ export default class Signup extends React.Component {
 
     render() {
       return (
-          <div>
-            <h1>Join Short Lnk</h1>
-            {this.state.error ? <p>{this.state.error}</p> : undefined}
-            <form onSubmit={this.onSubmit.bind(this)} noValidate> 
-                <input type="email" ref="email" name="email" placeholder="Email"/>
-                <input type="password" ref="password" name="password" placeholder="Password"/>
-                <button>Create Account</button>
-            </form>
-            <Link to="/">Already Have an account</Link>
+          <div className="boxed-view">
+            <div className="boxed-view__box">
+                <h1>Join Short Lnk</h1>
+                {this.state.error ? <p>{this.state.error}</p> : undefined}
+                <form onSubmit={this.onSubmit.bind(this)} noValidate className="boxed-view__form"> 
+                    <input type="email" ref="email" name="email" placeholder="Email"/>
+                    <input type="password" ref="password" name="password" placeholder="Password"/>
+                    <button className="button">Create Account</button>
+                </form>
+                <Link to="/">Already Have an account</Link>
+            </div>
           </div>
       )
     }

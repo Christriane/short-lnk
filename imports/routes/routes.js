@@ -31,7 +31,6 @@ const onEnterPrivatePage = (Component) => {
 
 export const onAuthChange = (isAuthenticated) => {
     const pathName = history.location.pathname;
-  console.log(pathName);
   const isUnauthenticatedPage = unauthenticatedPages.includes(pathName);
   const isAuthenticatedPage = authenticatedPages.includes(pathName);
 
